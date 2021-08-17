@@ -23,6 +23,12 @@ function App() {
 
   let [입력값, 입력값변경] = useState('');
 
+  // function 발행(){
+  //   var copy = [...글제목];
+  //   copy.push(e.target.value);
+  //   글제목변경(copy);
+  // }
+
   return (
     <div className="App">
 
@@ -51,7 +57,6 @@ function App() {
     
 <p> 이 이하로 반복문 </p>
 
-
       {/* 반복문 */}
       {
         글제목.map(function(a, b){
@@ -68,15 +73,20 @@ function App() {
       }
 
 
+        {/* <input onChange={ (e)=>{var copy = [...글제목]; copy.push(e.target.value); 글제목변경(copy);}}/>               내가한거              */}
       <div className="publish">
-        <input />
-        <button> 저장 </button>
+
+        <input onChange={ (e)=>{ 입력값변경(e.target.value) } } />
+        <button onClick={ ()=>{ 
+          var arrayCopy = [...글제목];
+          arrayCopy.unshift(입력값);
+          글제목변경( arrayCopy ) ;
+        } } > 저장 </button>
       </div>
 
-
-      
+            
       {입력값}
-      <input onChange={ (e)=>{ 입력값변경(e.target.value) } } /> {/* value는 input에 입력된 값 */}
+      <input onChange={ (e)=>{ 입력값변경(e.target.value) } } />              {/* value는 input에 입력된 값 */}
 
 
       {/* 모달 */}
